@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.uima.cas.CAS;
@@ -32,6 +33,29 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
 
   public double mMRR;
 
+  public class TokenLog implements Comparable<TokenLog> {
+    String token = "";
+
+    int noInQ = 0;
+
+    int noInS = 0;
+
+    public TokenLog(String ntoken, int nq, int ns) {
+      token = ntoken;
+      noInQ = nq;
+      noInS = ns;
+    }
+
+    @Override
+    public int compareTo(TokenLog o) {
+      if (this.noInQ > o.noInQ)
+        return 1;
+      if (this.noInQ < o.noInQ)
+        return 0;
+      return 0;
+    }
+  }
+
   // Sorting the Sentence by qId and Cosine Similarity is not necessary in Task 1.
   // However, this implementation is mainly designed for the error analysis.
   public class SentenceItem implements Comparable<SentenceItem> {
@@ -47,6 +71,8 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
 
     Map<String, Integer> tokenMap = null;
 
+    List<TokenLog> tokenLogList = null;
+
     public SentenceItem(int nqId, int nrel, String ntext, Map<String, Integer> ntokenMap) {
       qId = nqId;
       rel = nrel;
@@ -60,6 +86,10 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
 
     public void setRank(int nrank) {
       rank = nrank;
+    }
+
+    public void setTokenLogList(List<TokenLog> nl) {
+      tokenLogList = nl;
     }
 
     @Override
@@ -129,12 +159,6 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
 
     super.collectionProcessComplete(arg0);
 
-    /*
-     * Iterator<Map<String, Integer>> iter = tokenMapList.iterator(); while (iter.hasNext()) {
-     * Map<String, Integer> ls = iter.next(); // System.out.println(ls.size()); if (ls.get("the") !=
-     * null) { int feq = ls.get("the"); System.out.println("the  " + feq); } }
-     */
-
     // TODO :: compute the cosine similarity measure
     Map<String, Integer> queryVector = null;
     Map<String, Integer> docVector = null;
@@ -148,7 +172,7 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
         sent.setCosineSimilarity(1.0);
       } else {
         docVector = sent.tokenMap;
-        sent.setCosineSimilarity(computeCosineSimilarity(queryVector, docVector));
+        sent.setCosineSimilarity(computeCosineSimilarity(sent, queryVector, docVector));
       }
     }
 
@@ -174,7 +198,7 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
    * 
    * @return cosine_similarity
    */
-  private double computeCosineSimilarity(Map<String, Integer> queryVector,
+  private double computeCosineSimilarity(SentenceItem si, Map<String, Integer> queryVector,
           Map<String, Integer> docVector) {
     double cosine_similarity = 0.0;
     double sum = 0.0;
@@ -183,6 +207,7 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
 
     // TODO :: compute cosine similarity between two sentences
     Iterator it = queryVector.entrySet().iterator();
+    List<TokenLog> tll = new ArrayList<TokenLog>();
     while (it.hasNext()) {
       Map.Entry<String, Integer> pairs = (Map.Entry<String, Integer>) it.next();
       lenQuery += pairs.getValue() * pairs.getValue();
@@ -190,8 +215,12 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
       if (docVector.get(pairs.getKey()) == null)
         continue;
 
+      tll.add(new TokenLog(pairs.getKey(), pairs.getValue(), docVector.get(pairs.getKey())));
       sum += docVector.get(pairs.getKey()) * pairs.getValue();
     }
+
+    Collections.sort(tll);
+    si.setTokenLogList(tll);
 
     it = docVector.values().iterator();
     while (it.hasNext()) {
@@ -238,30 +267,38 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
   }
 
   private void setSentenceListRank() {
-    int rank = 1;
+    int rank = 0;
 
     Iterator it = mSentenceList.iterator();
     while (it.hasNext()) {
       SentenceItem sent = (SentenceItem) it.next();
 
       if (sent.rel == 99) {
+        mReportList.add("\n\n");
         sent.setRank(0);
+        String toReport = String.format("cosine=%.4f\trank=%d\tqid=%d\trel=%d\t%s\n",
+                sent.mCosineSimilarity, sent.rank, sent.qId, sent.rel, sent.text);
+        mReportList.add(toReport);
         rank = 1;
         continue;
       }
 
-      if (sent.rel == 1) {
-        String toReport = String.format("cosine=%.4f\trank=%d\tqid=%d\trel=1\t%s\n",
-                sent.mCosineSimilarity, rank, sent.qId, sent.text);
-        mReportList.add(toReport);
-      }
       sent.setRank(rank++);
+      String toReport = String.format("cosine=%.4f\trank=%d\tqid=%d\trel=%d\t%s\n",
+              sent.mCosineSimilarity, sent.rank, sent.qId, sent.rel, sent.text);
+      mReportList.add(toReport);
+
+      mReportList.add(String.format("%-20s%-10s%-10s\n", "TokenName", "NoInQ", "NoInS"));
+      for (TokenLog tl : sent.tokenLogList) {
+        mReportList.add(String.format("%-20s%-10d%-10d\n", tl.token, tl.noInQ, tl.noInS));
+      }
+
     }
   }
 
   private void printReport() {
     try {
-      FileWriter fw = new FileWriter("report.txt", false);
+      FileWriter fw = new FileWriter("task2_report.txt", false);
       for (String line : mReportList) {
         fw.write(line);
       }
