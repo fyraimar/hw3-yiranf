@@ -29,7 +29,6 @@ public class DocumentVectorAnnotator extends JCasAnnotator_ImplBase {
       Document doc = (Document) iter.get();
       createTermFreqVector(jcas, doc);
     }
-
   }
 
   /**
