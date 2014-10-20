@@ -32,12 +32,19 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
 
   public double mMRR;
 
+  // Sorting the Sentence by qId and Cosine Similarity is not necessary in Task 1.
+  // However, this implementation is mainly designed for the error analysis.
   public class SentenceItem implements Comparable<SentenceItem> {
     int qId = -1;
+
     int rel = -1;
+
     int rank = -1;
+
     String text = "";
+
     double mCosineSimilarity = 0.0;
+
     Map<String, Integer> tokenMap = null;
 
     public SentenceItem(int nqId, int nrel, String ntext, Map<String, Integer> ntokenMap) {
