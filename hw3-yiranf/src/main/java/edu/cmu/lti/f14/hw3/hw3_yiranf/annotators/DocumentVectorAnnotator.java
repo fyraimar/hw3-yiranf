@@ -9,8 +9,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.lucene.analysis.TokenStream;
+import org.apache.lucene.analysis.core.StopFilter;
+import org.apache.lucene.analysis.en.PorterStemFilter;
 import org.apache.lucene.analysis.standard.StandardTokenizer;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
+import org.apache.lucene.analysis.tokenattributes.OffsetAttribute;
 import org.apache.lucene.util.Version;
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
@@ -32,8 +35,8 @@ public class DocumentVectorAnnotator extends JCasAnnotator_ImplBase {
     if (iter.isValid()) {
       iter.moveToNext();
       Document doc = (Document) iter.get();
-      
-      //createTermFreqVector(jcas, doc);
+
+      // createTermFreqVector(jcas, doc);
       luceneCreateTermFreqVector(jcas, doc);
     }
   }
@@ -69,17 +72,17 @@ public class DocumentVectorAnnotator extends JCasAnnotator_ImplBase {
   }
 
   private void luceneCreateTermFreqVector(JCas jcas, Document doc) {
-    
     StringReader reader = new StringReader(doc.getText());
-    StandardTokenizer tokenizer = new StandardTokenizer(Version.LUCENE_36, reader);
-    
-    CharTermAttribute charTermAttrib = tokenizer.getAttribute(CharTermAttribute.class);
-    
+    TokenStream tokenStream = new StandardTokenizer(Version.LUCENE_36, reader);
+    // tokenStream = new StopFilter(Version.LUCENE_36, tokenStream, stop_word_set);
+    tokenStream = new PorterStemFilter(tokenStream);
+
     Map<String, Token> tokens = new HashMap<String, Token>();
+    CharTermAttribute charTermAttrib = tokenStream.getAttribute(CharTermAttribute.class);
     try {
-      tokenizer.reset();
-      
-      while (tokenizer.incrementToken()) {
+      tokenStream.reset();
+
+      while (tokenStream.incrementToken()) {
         Token target = tokens.get(charTermAttrib.toString());
         if (target == null) {
           target = new Token(jcas);
@@ -91,14 +94,12 @@ public class DocumentVectorAnnotator extends JCasAnnotator_ImplBase {
 
         target.setFrequency(target.getFrequency() + 1);
       }
-      
-      tokenizer.end();
-      tokenizer.close();
+
+      tokenStream.end();
+      tokenStream.close();
     } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
+      System.out.println(e.getMessage());
     }
-    
     Collection<Token> values = tokens.values();
     doc.setTokenList(Utils.fromCollectionToFSList(jcas, values));
   }
