@@ -173,9 +173,10 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
         sent.setScore(1.0);
       } else {
         docVector = sent.tokenMap;
-        //sent.setScore(computeCosineSimilarity(sent, queryVector, docVector));
-        //sent.setScore(computeJaccard(queryVector, docVector));
-        sent.setScore(computeDice(queryVector, docVector));
+        // sent.setScore(computeCosineSimilarity(sent, queryVector, docVector));
+        // sent.setScore(computeJaccard(queryVector, docVector));
+        // sent.setScore(computeDice(queryVector, docVector));
+        sent.setScore(computeTversky(queryVector, docVector));
       }
     }
 
@@ -187,8 +188,7 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
     while (iter.hasNext()) {
       SentenceItem sent = (SentenceItem) iter.next();
 
-      System.out
-              .println(sent.qId + " " + sent.rel + " " + sent.rank + " " + sent.mScore);
+      System.out.println(sent.qId + " " + sent.rel + " " + sent.rank + " " + sent.mScore);
     }
 
     // Compute the metric:: mean reciprocal rank
@@ -265,7 +265,7 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
     }
 
     metric_mrr = sum / totalQuery;
-
+    System.out.println("MMR: " + metric_mrr);
     return metric_mrr;
   }
 
@@ -279,72 +279,110 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
       if (sent.rel == 99) {
         mReportList.add("\n\n");
         sent.setRank(0);
-        String toReport = String.format("cosine=%.4f\trank=%d\tqid=%d\trel=%d\t%s\n",
-                sent.mScore, sent.rank, sent.qId, sent.rel, sent.text);
+        String toReport = String.format("cosine=%.4f\trank=%d\tqid=%d\trel=%d\t%s\n", sent.mScore,
+                sent.rank, sent.qId, sent.rel, sent.text);
         mReportList.add(toReport);
         rank = 1;
         continue;
       }
 
       sent.setRank(rank++);
-      String toReport = String.format("cosine=%.4f\trank=%d\tqid=%d\trel=%d\t%s\n",
-              sent.mScore, sent.rank, sent.qId, sent.rel, sent.text);
+      String toReport = String.format("cosine=%.4f\trank=%d\tqid=%d\trel=%d\t%s\n", sent.mScore,
+              sent.rank, sent.qId, sent.rel, sent.text);
       mReportList.add(toReport);
-      
+
       /*
-      mReportList.add(String.format("%-20s%-10s%-10s\n", "TokenName", "NoInQ", "NoInS"));
-      for (TokenLog tl : sent.tokenLogList) {
-        mReportList.add(String.format("%-20s%-10d%-10d\n", tl.token, tl.noInQ, tl.noInS));
-      }
-      */
+       * mReportList.add(String.format("%-20s%-10s%-10s\n", "TokenName", "NoInQ", "NoInS")); for
+       * (TokenLog tl : sent.tokenLogList) { mReportList.add(String.format("%-20s%-10d%-10d\n",
+       * tl.token, tl.noInQ, tl.noInS)); }
+       */
     }
   }
-  
+
   private double computeJaccard(Map<String, Integer> queryVector, Map<String, Integer> docVector) {
     double ret = 0.0;
-    
+
     Set<String> qv = queryVector.keySet();
     Set<String> dv = docVector.keySet();
-    
+
     int M11 = 0;
     int M10 = 0;
     int M01 = 0;
-    
+
     Iterator it = qv.iterator();
     while (it.hasNext()) {
       String st = (String) it.next();
-      
-      if (dv.contains(st) == false) M10++;
-      else M11++;
+
+      if (dv.contains(st) == false)
+        M10++;
+      else
+        M11++;
     }
-    
+
     it = dv.iterator();
     while (it.hasNext()) {
       String st = (String) it.next();
-      
-      if (qv.contains(st) == false) M01++;
+
+      if (qv.contains(st) == false)
+        M01++;
     }
-    
-    ret = (double) M11/(M01 + M10 + M11);
+
+    ret = (double) M11 / (M01 + M10 + M11);
     return ret;
   }
-  
+
   private double computeDice(Map<String, Integer> queryVector, Map<String, Integer> docVector) {
     double ret = 0.0;
-    
+
     Set<String> qv = queryVector.keySet();
     Set<String> dv = docVector.keySet();
-    
+
     int M11 = 0;
-    
+
     Iterator it = qv.iterator();
     while (it.hasNext()) {
       String st = (String) it.next();
-      
-      if (dv.contains(st) == true) M11++;
+
+      if (dv.contains(st) == true)
+        M11++;
     }
+
+    ret = (double) (2 * M11) / (qv.size() + dv.size());
+    return ret;
+  }
+
+  private double computeTversky(Map<String, Integer> queryVector, Map<String, Integer> docVector) {
+    double ret = 0.0;
+
+    Set<String> qv = queryVector.keySet();
+    Set<String> dv = docVector.keySet();
     
-    ret = (double) (2 * M11)/(qv.size() + dv.size());
+    double a = 0.9;
+    double b = 1 - a;
+
+    int M11 = 0;
+    int M10 = 0;
+    int M01 = 0;
+
+    Iterator it = qv.iterator();
+    while (it.hasNext()) {
+      String st = (String) it.next();
+
+      if (dv.contains(st) == false)
+        M10++;
+      else
+        M11++;
+    }
+
+    it = dv.iterator();
+    while (it.hasNext()) {
+      String st = (String) it.next();
+
+      if (qv.contains(st) == false)
+        M01++;
+    }
+
+    ret = (double) M11 / (a * M10 + b * M01 + M11);
     return ret;
   }
 

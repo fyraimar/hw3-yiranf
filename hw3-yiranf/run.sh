@@ -1,5 +1,5 @@
 #!/bin/bash
 
 mvn exec:java -Dexec.mainClass=edu.cmu.lti.f14.hw3.hw3_yiranf.VectorSpaceRetrieval
-Open ./task2_report.txt
+#Open ./task2_report.txt
 
