@@ -174,7 +174,8 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
       } else {
         docVector = sent.tokenMap;
         //sent.setScore(computeCosineSimilarity(sent, queryVector, docVector));
-        sent.setScore(computeJaccard(queryVector, docVector));
+        //sent.setScore(computeJaccard(queryVector, docVector));
+        sent.setScore(computeDice(queryVector, docVector));
       }
     }
 
@@ -325,6 +326,25 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
     }
     
     ret = (double) M11/(M01 + M10 + M11);
+    return ret;
+  }
+  
+  private double computeDice(Map<String, Integer> queryVector, Map<String, Integer> docVector) {
+    double ret = 0.0;
+    
+    Set<String> qv = queryVector.keySet();
+    Set<String> dv = docVector.keySet();
+    
+    int M11 = 0;
+    
+    Iterator it = qv.iterator();
+    while (it.hasNext()) {
+      String st = (String) it.next();
+      
+      if (dv.contains(st) == true) M11++;
+    }
+    
+    ret = (double) (2 * M11)/(qv.size() + dv.size());
     return ret;
   }
 
