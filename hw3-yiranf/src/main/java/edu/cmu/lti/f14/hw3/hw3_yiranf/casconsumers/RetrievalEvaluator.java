@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.uima.cas.CAS;
 import org.apache.uima.cas.CASException;
@@ -67,7 +68,7 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
 
     String text = "";
 
-    double mCosineSimilarity = 0.0;
+    double mScore = 0.0;
 
     Map<String, Integer> tokenMap = null;
 
@@ -80,8 +81,8 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
       tokenMap = ntokenMap;
     }
 
-    public void setCosineSimilarity(double ncs) {
-      mCosineSimilarity = ncs;
+    public void setScore(double ncs) {
+      mScore = ncs;
     }
 
     public void setRank(int nrank) {
@@ -100,9 +101,9 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
       if (this.qId > o.qId)
         return 1;
 
-      if (this.mCosineSimilarity > o.mCosineSimilarity)
+      if (this.mScore > o.mScore)
         return -1;
-      if (this.mCosineSimilarity < o.mCosineSimilarity)
+      if (this.mScore < o.mScore)
         return 1;
 
       return 0;
@@ -169,10 +170,11 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
 
       if (sent.rel == 99) {
         queryVector = sent.tokenMap;
-        sent.setCosineSimilarity(1.0);
+        sent.setScore(1.0);
       } else {
         docVector = sent.tokenMap;
-        sent.setCosineSimilarity(computeCosineSimilarity(sent, queryVector, docVector));
+        //sent.setScore(computeCosineSimilarity(sent, queryVector, docVector));
+        sent.setScore(computeJaccard(queryVector, docVector));
       }
     }
 
@@ -185,7 +187,7 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
       SentenceItem sent = (SentenceItem) iter.next();
 
       System.out
-              .println(sent.qId + " " + sent.rel + " " + sent.rank + " " + sent.mCosineSimilarity);
+              .println(sent.qId + " " + sent.rel + " " + sent.rank + " " + sent.mScore);
     }
 
     // Compute the metric:: mean reciprocal rank
@@ -277,7 +279,7 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
         mReportList.add("\n\n");
         sent.setRank(0);
         String toReport = String.format("cosine=%.4f\trank=%d\tqid=%d\trel=%d\t%s\n",
-                sent.mCosineSimilarity, sent.rank, sent.qId, sent.rel, sent.text);
+                sent.mScore, sent.rank, sent.qId, sent.rel, sent.text);
         mReportList.add(toReport);
         rank = 1;
         continue;
@@ -285,15 +287,45 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
 
       sent.setRank(rank++);
       String toReport = String.format("cosine=%.4f\trank=%d\tqid=%d\trel=%d\t%s\n",
-              sent.mCosineSimilarity, sent.rank, sent.qId, sent.rel, sent.text);
+              sent.mScore, sent.rank, sent.qId, sent.rel, sent.text);
       mReportList.add(toReport);
-
+      
+      /*
       mReportList.add(String.format("%-20s%-10s%-10s\n", "TokenName", "NoInQ", "NoInS"));
       for (TokenLog tl : sent.tokenLogList) {
         mReportList.add(String.format("%-20s%-10d%-10d\n", tl.token, tl.noInQ, tl.noInS));
       }
-
+      */
     }
+  }
+  
+  private double computeJaccard(Map<String, Integer> queryVector, Map<String, Integer> docVector) {
+    double ret = 0.0;
+    
+    Set<String> qv = queryVector.keySet();
+    Set<String> dv = docVector.keySet();
+    
+    int M11 = 0;
+    int M10 = 0;
+    int M01 = 0;
+    
+    Iterator it = qv.iterator();
+    while (it.hasNext()) {
+      String st = (String) it.next();
+      
+      if (dv.contains(st) == false) M10++;
+      else M11++;
+    }
+    
+    it = dv.iterator();
+    while (it.hasNext()) {
+      String st = (String) it.next();
+      
+      if (qv.contains(st) == false) M01++;
+    }
+    
+    ret = (double) M11/(M01 + M10 + M11);
+    return ret;
   }
 
   private void printReport() {

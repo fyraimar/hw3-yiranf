@@ -1,409 +1,129 @@
 
 
 cosine=1.0000	rank=0	qid=1	rel=99	Give us the name of the volcano that destroyed the ancient city of Pompeii 
-cosine=0.6929	rank=1	qid=1	rel=0	Vesuvius is located near the ruins of the destroyed city of Pompeii. 
-TokenName           NoInQ     NoInS     
-of                  2         2         
-destroi             1         1         
-the                 3         2         
-citi                1         1         
-Pompeii             1         1         
-cosine=0.3182	rank=2	qid=1	rel=1	In A.D. 79, long-dormant Mount Vesuvius erupted, burying in volcanic ash the Roman city of Pompeii; an  estimated 20,000 people died. 
-TokenName           NoInQ     NoInS     
-of                  2         1         
-the                 3         1         
-citi                1         1         
-Pompeii             1         1         
-cosine=0.2446	rank=3	qid=1	rel=0	You can see Vesuvius in the background, near ruins of Pompei; its last eruption was in 1944. 
-TokenName           NoInQ     NoInS     
-of                  2         1         
-the                 3         1         
-cosine=0.2068	rank=4	qid=1	rel=0	In 79 A.D., this ancient city was buried in an avalanche of hot ash from Mount Vesuvius. 
-TokenName           NoInQ     NoInS     
-of                  2         1         
-ancient             1         1         
-citi                1         1         
+cosine=0.3125	rank=1	qid=1	rel=0	Vesuvius is located near the ruins of the destroyed city of Pompeii. 
+cosine=0.1379	rank=2	qid=1	rel=1	In A.D. 79, long-dormant Mount Vesuvius erupted, burying in volcanic ash the Roman city of Pompeii; an  estimated 20,000 people died. 
+cosine=0.1200	rank=3	qid=1	rel=0	In 79 A.D., this ancient city was buried in an avalanche of hot ash from Mount Vesuvius. 
+cosine=0.0800	rank=4	qid=1	rel=0	You can see Vesuvius in the background, near ruins of Pompei; its last eruption was in 1944. 
 
 
 cosine=1.0000	rank=0	qid=2	rel=99	What has been the largest crowd to ever come see Michael Jordan 
-cosine=0.3203	rank=1	qid=2	rel=1	When Michael Jordan--one of the greatest basketball player of all time--made what was expected to be his last trip to play in Atlanta last  March, an NBA record 62,046 fans turned out to see him and the  Bulls. 
-TokenName           NoInQ     NoInS     
-to                  1         3         
-see                 1         1         
-Jordan              1         1         
-the                 1         2         
-Michael             1         1         
-cosine=0.3010	rank=2	qid=2	rel=0	A supposedly last play of  Michael Jordan gathered some of the largest crowd in history of NBA. 
-TokenName           NoInQ     NoInS     
-Jordan              1         1         
-the                 1         1         
-crowd               1         1         
-Michael             1         1         
-largest             1         1         
-cosine=0.2440	rank=3	qid=2	rel=0	The Immortal World Tour of Michael Jackson gathered some of the largest crowds of fans in the history of pop music. 
-TokenName           NoInQ     NoInS     
-the                 1         2         
-crowd               1         1         
-Michael             1         1         
-largest             1         1         
-cosine=0.1936	rank=4	qid=2	rel=0	In the Bulls' last visit to Atlanta, an NBA-record 62,046 fans showed up at the Georgia Dome. 
-TokenName           NoInQ     NoInS     
-to                  1         1         
-the                 1         2         
+cosine=0.2273	rank=1	qid=2	rel=0	A supposedly last play of  Michael Jordan gathered some of the largest crowd in history of NBA. 
+cosine=0.1600	rank=2	qid=2	rel=0	The Immortal World Tour of Michael Jackson gathered some of the largest crowds of fans in the history of pop music. 
+cosine=0.1190	rank=3	qid=2	rel=1	When Michael Jordan--one of the greatest basketball player of all time--made what was expected to be his last trip to play in Atlanta last  March, an NBA record 62,046 fans turned out to see him and the  Bulls. 
+cosine=0.0741	rank=4	qid=2	rel=0	In the Bulls' last visit to Atlanta, an NBA-record 62,046 fans showed up at the Georgia Dome. 
 
 
 cosine=1.0000	rank=0	qid=3	rel=99	In which year did a purchase of Alaska happen? 
-cosine=0.4216	rank=1	qid=3	rel=0	William Seward negotiated a purchase of Alaska for $7.2 million. 
-TokenName           NoInQ     NoInS     
-of                  1         1         
-purchas             1         1         
-a                   1         1         
-Alaska              1         1         
-cosine=0.3536	rank=2	qid=3	rel=1	Alaska was purchased from Russia in year 1867. 
-TokenName           NoInQ     NoInS     
-purchas             1         1         
-year                1         1         
-Alaska              1         1         
-cosine=0.2774	rank=3	qid=3	rel=0	1867 - U.S. President Andrew Jackson proclaims treaty for purchase of Alaska from Russia. 
-TokenName           NoInQ     NoInS     
-of                  1         1         
-purchas             1         1         
-Alaska              1         1         
+cosine=0.2667	rank=1	qid=3	rel=0	William Seward negotiated a purchase of Alaska for $7.2 million. 
+cosine=0.2143	rank=2	qid=3	rel=1	Alaska was purchased from Russia in year 1867. 
+cosine=0.1579	rank=3	qid=3	rel=0	1867 - U.S. President Andrew Jackson proclaims treaty for purchase of Alaska from Russia. 
 
 
 cosine=1.0000	rank=0	qid=4	rel=99	What year did Wilt Chamberlain score 100 points? 
-cosine=0.3858	rank=1	qid=4	rel=1	On March 2, 1962, Wilt Chamberlain scored a record 100 points in a   game against the New York Knicks. 
-TokenName           NoInQ     NoInS     
-Chamberlain         1         1         
-point               1         1         
-score               1         1         
-Wilt                1         1         
-100                 1         1         
-cosine=0.3651	rank=2	qid=4	rel=0	A 100 point game was a highlight in a career of Wilt Chamberlain 
-TokenName           NoInQ     NoInS     
-Chamberlain         1         1         
-point               1         1         
-Wilt                1         1         
-100                 1         1         
-cosine=0.3283	rank=3	qid=4	rel=0	Wilt Chamberlain most famous record is the 100 points he scored in the   Philadelphia Warriors' 169-147 defeat of the New York Knicks. 
-TokenName           NoInQ     NoInS     
-Chamberlain         1         1         
-point               1         1         
-score               1         1         
-Wilt                1         1         
-100                 1         1         
+cosine=0.2500	rank=1	qid=4	rel=0	A 100 point game was a highlight in a career of Wilt Chamberlain 
+cosine=0.2381	rank=2	qid=4	rel=1	On March 2, 1962, Wilt Chamberlain scored a record 100 points in a   game against the New York Knicks. 
+cosine=0.2083	rank=3	qid=4	rel=0	Wilt Chamberlain most famous record is the 100 points he scored in the   Philadelphia Warriors' 169-147 defeat of the New York Knicks. 
 
 
 cosine=1.0000	rank=0	qid=5	rel=99	What river is called China's Sorrow? 
-cosine=0.4082	rank=1	qid=5	rel=0	Yellow river is often called the mother of China 
-TokenName           NoInQ     NoInS     
-call                1         1         
-is                  1         1         
-river               1         1         
-cosine=0.1633	rank=2	qid=5	rel=0	Yangtze is longest river in Asia in general and in China, in particular. 
-TokenName           NoInQ     NoInS     
-is                  1         1         
-river               1         1         
-cosine=0.0937	rank=3	qid=5	rel=1	People of China have mixed feelings about  River, which they often call "sorrow of China" 
-TokenName           NoInQ     NoInS     
-call                1         1         
+cosine=0.2500	rank=1	qid=5	rel=0	Yellow river is often called the mother of China 
+cosine=0.1429	rank=2	qid=5	rel=0	Yangtze is longest river in Asia in general and in China, in particular. 
+cosine=0.0556	rank=3	qid=5	rel=1	People of China have mixed feelings about  River, which they often call "sorrow of China" 
 
 
 cosine=1.0000	rank=0	qid=6	rel=99	Who was the first person to run the mile in less than four minutes 
-cosine=0.6682	rank=1	qid=6	rel=1	Roger Bannister was the first to break the four-minute mile barrier. 
-TokenName           NoInQ     NoInS     
-to                  1         1         
-minut               1         1         
-mile                1         1         
-four                1         1         
-wa                  1         1         
-the                 2         2         
-first               1         1         
-cosine=0.6013	rank=2	qid=6	rel=0	It is hard for humans to run the mile faster than in four minutes 
-TokenName           NoInQ     NoInS     
-to                  1         1         
-minut               1         1         
-than                1         1         
-mile                1         1         
-four                1         1         
-the                 2         1         
-run                 1         1         
-in                  1         1         
-cosine=0.2165	rank=3	qid=6	rel=0	The claim that a 4-minute mile was once thought to be impossible byinformed observers was and is a widely propagated myth created by sportswriters and debunked by Bannister himself in his memoir, The Four Minute Mile (1955). 
-TokenName           NoInQ     NoInS     
-to                  1         1         
-minut               1         1         
-mile                1         1         
-wa                  1         2         
-in                  1         1         
+cosine=0.4211	rank=1	qid=6	rel=0	It is hard for humans to run the mile faster than in four minutes 
+cosine=0.4118	rank=2	qid=6	rel=1	Roger Bannister was the first to break the four-minute mile barrier. 
+cosine=0.1220	rank=3	qid=6	rel=0	The claim that a 4-minute mile was once thought to be impossible byinformed observers was and is a widely propagated myth created by sportswriters and debunked by Bannister himself in his memoir, The Four Minute Mile (1955). 
 
 
 cosine=1.0000	rank=0	qid=7	rel=99	What year did Alaska become a state? 
-cosine=0.2535	rank=1	qid=7	rel=0	Also as it did in 1959, the state of Alaska was struggling with how to pay its bills. 
-TokenName           NoInQ     NoInS     
-state               1         1         
-did                 1         1         
-Alaska              1         1         
-cosine=0.1833	rank=2	qid=7	rel=0	Aaska is a U.S. state situated in the northwest extremity of the North American continent. 
-TokenName           NoInQ     NoInS     
-a                   1         1         
-state               1         1         
-cosine=0.1782	rank=3	qid=7	rel=1	And that's not even to mention the breathtaking beauty of Alaska that became, in 1959, our 49th state. 
-TokenName           NoInQ     NoInS     
-state               1         1         
-Alaska              1         1         
+cosine=0.1429	rank=1	qid=7	rel=0	Also as it did in 1959, the state of Alaska was struggling with how to pay its bills. 
+cosine=0.1053	rank=2	qid=7	rel=0	Aaska is a U.S. state situated in the northwest extremity of the North American continent. 
+cosine=0.0870	rank=3	qid=7	rel=1	And that's not even to mention the breathtaking beauty of Alaska that became, in 1959, our 49th state. 
 cosine=0.0000	rank=4	qid=7	rel=0	On Jan. 3, 1959, Alaska's became the 49th star on Old Glory. 
-TokenName           NoInQ     NoInS     
 
 
 cosine=1.0000	rank=0	qid=8	rel=99	When did Mike Tyson bite Holyfield's ear? 
-cosine=0.4364	rank=1	qid=8	rel=0	Tyson was choked up as he spoke of biting Evander Holyfield's ear. 
-TokenName           NoInQ     NoInS     
-ear                 1         1         
-Tyson               1         1         
-bite                1         1         
-Holyfield'          1         1         
-cosine=0.2750	rank=2	qid=8	rel=1	Fighting for Holyfield's WBA heavyweight title on June 28, 1997, Tyson inexplicably bit his opponent's right ear. 
-TokenName           NoInQ     NoInS     
-ear                 1         1         
-Tyson               1         1         
-Holyfield'          1         1         
-cosine=0.0690	rank=3	qid=8	rel=0	Tyson told the panel he was foggy from repeated head butts by Holyfield in the third round of their June 28, 1997 fight in Las Vegas. 
-TokenName           NoInQ     NoInS     
-Tyson               1         1         
-cosine=0.0557	rank=4	qid=8	rel=0	Tyson said he was feeling betrayed by "people I would have died for" leading up to the June 1997 title fight against Holyfield, according to the psychiatric report released today by the state attorney general's office. 
-TokenName           NoInQ     NoInS     
-Tyson               1         1         
+cosine=0.2667	rank=1	qid=8	rel=0	Tyson was choked up as he spoke of biting Evander Holyfield's ear. 
+cosine=0.1429	rank=2	qid=8	rel=1	Fighting for Holyfield's WBA heavyweight title on June 28, 1997, Tyson inexplicably bit his opponent's right ear. 
+cosine=0.0333	rank=3	qid=8	rel=0	Tyson told the panel he was foggy from repeated head butts by Holyfield in the third round of their June 28, 1997 fight in Las Vegas. 
+cosine=0.0263	rank=4	qid=8	rel=0	Tyson said he was feeling betrayed by "people I would have died for" leading up to the June 1997 title fight against Holyfield, according to the psychiatric report released today by the state attorney general's office. 
 
 
 cosine=1.0000	rank=0	qid=9	rel=99	What was the first spaceship on the moon 
-cosine=0.6529	rank=1	qid=9	rel=0	Eagle was the first manned spacecraft that reached the surface of the moon 
-TokenName           NoInQ     NoInS     
-moon                1         1         
-wa                  1         1         
-the                 2         3         
-first               1         1         
-cosine=0.5804	rank=2	qid=9	rel=1	Luna 2 was the first spacecraft to reach the surface of the Moon. 
-TokenName           NoInQ     NoInS     
-wa                  1         1         
-the                 2         3         
-first               1         1         
-cosine=0.4781	rank=3	qid=9	rel=0	And he was down to about  15 seconds of fuel, after dodging boulders on the moon, when the  Eagle landed on July 20, 1969. 
-TokenName           NoInQ     NoInS     
-moon                1         1         
-on                  1         2         
-wa                  1         1         
-the                 2         2         
-cosine=0.3354	rank=4	qid=9	rel=0	When the cool-thinking   Armstrong realized that the computer navigation would set Eagle,  the lunar lander, down among dangerous boulders in a gaping crater,  he acted. 
-TokenName           NoInQ     NoInS     
-the                 2         3         
+cosine=0.2857	rank=1	qid=9	rel=0	Eagle was the first manned spacecraft that reached the surface of the moon 
+cosine=0.2000	rank=2	qid=9	rel=1	Luna 2 was the first spacecraft to reach the surface of the Moon. 
+cosine=0.1600	rank=3	qid=9	rel=0	And he was down to about  15 seconds of fuel, after dodging boulders on the moon, when the  Eagle landed on July 20, 1969. 
+cosine=0.0333	rank=4	qid=9	rel=0	When the cool-thinking   Armstrong realized that the computer navigation would set Eagle,  the lunar lander, down among dangerous boulders in a gaping crater,  he acted. 
 
 
 cosine=1.0000	rank=0	qid=10	rel=99	Who won the Nobel Peace Prize in 1992? 
-cosine=0.6250	rank=1	qid=10	rel=1	Menchu won the Nobel peace prize in 1992. 
-TokenName           NoInQ     NoInS     
-1992                1         1         
-won                 1         1         
-the                 1         1         
-Nobel               1         1         
-in                  1         1         
-cosine=0.3467	rank=2	qid=10	rel=0	Menchu, a Guatemalan leader internationally known for her work in human rights and a leading Indian activist, was honored with the Nobel Peace Prize. 
-TokenName           NoInQ     NoInS     
-Prize               1         1         
-the                 1         1         
-Nobel               1         1         
-Peac                1         1         
-in                  1         1         
-cosine=0.1581	rank=3	qid=10	rel=0	A new book debunks much of Nobel peace prize laureate Ms. Menchu's version of her life in Guatemala. 
-TokenName           NoInQ     NoInS     
-Nobel               1         1         
-in                  1         1         
-cosine=0.0857	rank=4	qid=10	rel=0	A nobel prize laureate Ms. Menchu became an internationally acclaimed spokeswoman for the rights of indigenous people. 
-TokenName           NoInQ     NoInS     
-the                 1         1         
+cosine=0.4545	rank=1	qid=10	rel=1	Menchu won the Nobel peace prize in 1992. 
+cosine=0.1923	rank=2	qid=10	rel=0	Menchu, a Guatemalan leader internationally known for her work in human rights and a leading Indian activist, was honored with the Nobel Peace Prize. 
+cosine=0.0870	rank=3	qid=10	rel=0	A new book debunks much of Nobel peace prize laureate Ms. Menchu's version of her life in Guatemala. 
+cosine=0.0417	rank=4	qid=10	rel=0	A nobel prize laureate Ms. Menchu became an internationally acclaimed spokeswoman for the rights of indigenous people. 
 
 
 cosine=1.0000	rank=0	qid=11	rel=99	Where is Devil's Tower 
-cosine=0.3638	rank=1	qid=11	rel=0	Devil's Tower  is an igneous intrusion that rises dramatically 1,267 feet (386 m) above the surrounding terrain. 
-TokenName           NoInQ     NoInS     
-is                  1         1         
-Tower               1         1         
-Devil'              1         1         
-cosine=0.3273	rank=2	qid=11	rel=0	To the west, across the Wyoming border, is the staggeringly beautiful Devil's Tower National Monument. 
-TokenName           NoInQ     NoInS     
-is                  1         1         
-Tower               1         1         
-Devil'              1         1         
-cosine=0.2357	rank=3	qid=11	rel=0	In 1941, Petzoldt joined other rock climbers to rescue a marooned parachutist who had landed atop Devil's Tower 
-TokenName           NoInQ     NoInS     
-Tower               1         1         
-Devil'              1         1         
-cosine=0.1768	rank=4	qid=11	rel=1	Devils Tower can be found in Crook County 
-TokenName           NoInQ     NoInS     
-Tower               1         1         
+cosine=0.2143	rank=1	qid=11	rel=0	To the west, across the Wyoming border, is the staggeringly beautiful Devil's Tower National Monument. 
+cosine=0.1667	rank=2	qid=11	rel=0	Devil's Tower  is an igneous intrusion that rises dramatically 1,267 feet (386 m) above the surrounding terrain. 
+cosine=0.1000	rank=3	qid=11	rel=0	In 1941, Petzoldt joined other rock climbers to rescue a marooned parachutist who had landed atop Devil's Tower 
+cosine=0.0909	rank=4	qid=11	rel=1	Devils Tower can be found in Crook County 
 
 
 cosine=1.0000	rank=0	qid=12	rel=99	What is the height of the tallest redwood? 
-cosine=0.6674	rank=1	qid=12	rel=0	Mendocino Tree is the tallest redwood in the world. 
-TokenName           NoInQ     NoInS     
-is                  1         1         
-the                 2         2         
-tallest             1         1         
-redwood             1         1         
-cosine=0.3835	rank=2	qid=12	rel=0	"Mendocino Tree" has been officially decreed the tallest living thing by Save the Redwoods League. 
-TokenName           NoInQ     NoInS     
-the                 2         2         
-tallest             1         1         
-cosine=0.3627	rank=3	qid=12	rel=1	Named the "Mendocino Tree," the 600- to 800-year-old redwood   stands 367 1/2 feet tall. 
-TokenName           NoInQ     NoInS     
-the                 2         2         
-redwood             1         1         
-cosine=0.3536	rank=4	qid=12	rel=0	The tallest tree alive in the world today is a 370-foot-tall redwood whose location biologists declined to disclose. 
-TokenName           NoInQ     NoInS     
-is                  1         1         
-the                 2         1         
-tallest             1         1         
-redwood             1         1         
+cosine=0.3636	rank=1	qid=12	rel=0	Mendocino Tree is the tallest redwood in the world. 
+cosine=0.1739	rank=2	qid=12	rel=0	The tallest tree alive in the world today is a 370-foot-tall redwood whose location biologists declined to disclose. 
+cosine=0.1053	rank=3	qid=12	rel=0	"Mendocino Tree" has been officially decreed the tallest living thing by Save the Redwoods League. 
+cosine=0.0952	rank=4	qid=12	rel=1	Named the "Mendocino Tree," the 600- to 800-year-old redwood   stands 367 1/2 feet tall. 
 
 
 cosine=1.0000	rank=0	qid=13	rel=99	How deep is Crater Lake? 
-cosine=0.4045	rank=1	qid=13	rel=0	Crater Lake is a caldera lake in the western United States. 
-TokenName           NoInQ     NoInS     
-is                  1         1         
-Crater              1         1         
-Lake                1         1         
-cosine=0.2697	rank=2	qid=13	rel=0	There are no rivers flowing into or out of Crater Lake 
-TokenName           NoInQ     NoInS     
-Crater              1         1         
-Lake                1         1         
-cosine=0.2236	rank=3	qid=13	rel=1	Oregon's Crater Lake tops it at 1,932 feet at its greatest depth. 
-TokenName           NoInQ     NoInS     
-Crater              1         1         
-Lake                1         1         
+cosine=0.2308	rank=1	qid=13	rel=0	Crater Lake is a caldera lake in the western United States. 
+cosine=0.1538	rank=2	qid=13	rel=1	Oregon's Crater Lake tops it at 1,932 feet at its greatest depth. 
+cosine=0.1429	rank=3	qid=13	rel=0	There are no rivers flowing into or out of Crater Lake 
 
 
 cosine=1.0000	rank=0	qid=14	rel=99	Who was the lead singer for the Commodores 
-cosine=0.5270	rank=1	qid=14	rel=1	Lionel Richiewas was lead singer and songwriter for Commodores. 
-TokenName           NoInQ     NoInS     
-for                 1         1         
-Commodor            1         1         
-lead                1         1         
-singer              1         1         
-wa                  1         1         
-cosine=0.4226	rank=2	qid=14	rel=0	The Commodores originally came together from groups the Mystics and the Jays. 
-TokenName           NoInQ     NoInS     
-Commodor            1         1         
-the                 2         2         
-cosine=0.3266	rank=3	qid=14	rel=0	The Commodores are an American funk/soulband, which was at its peak in the 1970s. 
-TokenName           NoInQ     NoInS     
-Commodor            1         1         
-wa                  1         1         
-the                 2         1         
+cosine=0.4545	rank=1	qid=14	rel=1	Lionel Richiewas was lead singer and songwriter for Commodores. 
+cosine=0.1579	rank=2	qid=14	rel=0	The Commodores are an American funk/soulband, which was at its peak in the 1970s. 
+cosine=0.1250	rank=3	qid=14	rel=0	The Commodores originally came together from groups the Mystics and the Jays. 
 
 
 cosine=1.0000	rank=0	qid=15	rel=99	What is the coldest place on earth? 
-cosine=0.5714	rank=1	qid=15	rel=0	Oymyakon is the coldest place in Russia. 
-TokenName           NoInQ     NoInS     
-is                  1         1         
-the                 1         1         
-coldest             1         1         
-place               1         1         
-cosine=0.4193	rank=2	qid=15	rel=0	Prospect Creek Camp in Alaska is the coldest place in US. 
-TokenName           NoInQ     NoInS     
-is                  1         1         
-the                 1         1         
-coldest             1         1         
-place               1         1         
-cosine=0.0756	rank=3	qid=15	rel=1	A new look at NASA satellite data revealed that Earth set a new record for coldest temperature recorded in East Antarctica. 
-TokenName           NoInQ     NoInS     
-coldest             1         1         
+cosine=0.4000	rank=1	qid=15	rel=0	Oymyakon is the coldest place in Russia. 
+cosine=0.3077	rank=2	qid=15	rel=0	Prospect Creek Camp in Alaska is the coldest place in US. 
+cosine=0.0400	rank=3	qid=15	rel=1	A new look at NASA satellite data revealed that Earth set a new record for coldest temperature recorded in East Antarctica. 
 
 
 cosine=1.0000	rank=0	qid=16	rel=99	When did Bob Marley die 
-cosine=0.3354	rank=1	qid=16	rel=0	Without proper and timely removal of tumor one can die like Bob Marley or Steve Jobs. 
-TokenName           NoInQ     NoInS     
-Bob                 1         1         
-die                 1         1         
-Marlei              1         1         
-cosine=0.3354	rank=2	qid=16	rel=0	Bob Marley was a Jamaican reggae singer-songwriter, musician, and guitarist who did achieve international fame. 
-TokenName           NoInQ     NoInS     
-Bob                 1         1         
-did                 1         1         
-Marlei              1         1         
-cosine=0.2828	rank=3	qid=16	rel=1	Bob Marley died in 1981 from cancer at age 36. 
-TokenName           NoInQ     NoInS     
-Bob                 1         1         
-Marlei              1         1         
+cosine=0.1667	rank=1	qid=16	rel=0	Without proper and timely removal of tumor one can die like Bob Marley or Steve Jobs. 
+cosine=0.1667	rank=2	qid=16	rel=0	Bob Marley was a Jamaican reggae singer-songwriter, musician, and guitarist who did achieve international fame. 
+cosine=0.1538	rank=3	qid=16	rel=1	Bob Marley died in 1981 from cancer at age 36. 
 
 
 cosine=1.0000	rank=0	qid=17	rel=99	Which U.S. state is the leading corn producer? 
-cosine=0.5590	rank=1	qid=17	rel=0	The United States is the world's leading producer of corn 
-TokenName           NoInQ     NoInS     
-is                  1         1         
-lead                1         1         
-produc              1         1         
-the                 1         1         
-corn                1         1         
-cosine=0.2774	rank=2	qid=17	rel=0	The U.S. state leading in production of corn received $600  million in annual tax subsidies to boost production of ethanol. 
-TokenName           NoInQ     NoInS     
-state               1         1         
-U.S                 1         1         
-lead                1         1         
-corn                1         1         
-cosine=0.2212	rank=3	qid=17	rel=1	Corn futures found support from forecasts for above-normal   temperatures in major growing areas, including Iowa, which often is  the nation's largest producer. 
-TokenName           NoInQ     NoInS     
-is                  1         1         
-produc              1         1         
-the                 1         1         
+cosine=0.3846	rank=1	qid=17	rel=0	The United States is the world's leading producer of corn 
+cosine=0.1905	rank=2	qid=17	rel=0	The U.S. state leading in production of corn received $600  million in annual tax subsidies to boost production of ethanol. 
+cosine=0.1071	rank=3	qid=17	rel=1	Corn futures found support from forecasts for above-normal   temperatures in major growing areas, including Iowa, which often is  the nation's largest producer. 
 
 
 cosine=1.0000	rank=0	qid=18	rel=99	Where was the first McDonald's built? 
-cosine=0.2357	rank=1	qid=18	rel=0	McDonald's Corporation is the world's largest chain of hamburger fast food restaurants. 
-TokenName           NoInQ     NoInS     
-McDonald'           1         1         
-the                 1         1         
-cosine=0.2202	rank=2	qid=18	rel=1	From a single hamburger stand in San Bernardino, Calif., in 1948, the systematized approach that the McDonald brothers developed to offer customers reasonably priced food at a rapid pace formed the cornerstone of the fast-food business. 
-TokenName           NoInQ     NoInS     
-the                 1         4         
+cosine=0.1250	rank=1	qid=18	rel=0	McDonald's Corporation is the world's largest chain of hamburger fast food restaurants. 
+cosine=0.0278	rank=2	qid=18	rel=1	From a single hamburger stand in San Bernardino, Calif., in 1948, the systematized approach that the McDonald brothers developed to offer customers reasonably priced food at a rapid pace formed the cornerstone of the fast-food business. 
 cosine=0.0000	rank=3	qid=18	rel=0	The company began in 1940 as a barbecue restaurant operated by Richard and Maurice McDonald. 
-TokenName           NoInQ     NoInS     
 
 
 cosine=1.0000	rank=0	qid=19	rel=99	The Hindenburg disaster took place in 1937 in which New Jersey town? 
-cosine=0.3344	rank=1	qid=19	rel=0	Hindenburg-class airships were passenger carrying rigid airships all of which were retired shortly after a disaster in 1937 
-TokenName           NoInQ     NoInS     
-which               1         1         
-Hindenburg          1         1         
-1937                1         1         
-disast              1         1         
-in                  2         1         
-cosine=0.2880	rank=2	qid=19	rel=0	The Hindenburg disaster took place as the German passenger airship LZ 129 Hindenburg caught fire and was destroyed during its attempt to dock with its mooring mast 
-TokenName           NoInQ     NoInS     
-The                 1         1         
-Hindenburg          1         2         
-took                1         1         
-disast              1         1         
-place               1         1         
-cosine=0.1670	rank=3	qid=19	rel=1	On May 6, 1937, the hydrogen-filled German dirigible Hindenburg   burned and crashed in Lakehurst, N.J., killing 35 of the 97 people  on board and a Navy crewman on the ground. 
-TokenName           NoInQ     NoInS     
-Hindenburg          1         1         
-1937                1         1         
-in                  2         1         
+cosine=0.2174	rank=1	qid=19	rel=0	Hindenburg-class airships were passenger carrying rigid airships all of which were retired shortly after a disaster in 1937 
+cosine=0.1613	rank=2	qid=19	rel=0	The Hindenburg disaster took place as the German passenger airship LZ 129 Hindenburg caught fire and was destroyed during its attempt to dock with its mooring mast 
+cosine=0.0857	rank=3	qid=19	rel=1	On May 6, 1937, the hydrogen-filled German dirigible Hindenburg   burned and crashed in Lakehurst, N.J., killing 35 of the 97 people  on board and a Navy crewman on the ground. 
 
 
 cosine=1.0000	rank=0	qid=20	rel=99	What is the Keystone State? 
-cosine=0.4216	rank=1	qid=20	rel=0	Keystone Resort is the largest ski resort in Summit County located in Keystone Colorado. 
-TokenName           NoInQ     NoInS     
-is                  1         1         
-Keyston             1         2         
-the                 1         1         
-cosine=0.3904	rank=2	qid=20	rel=1	They call it the Keystone State, and in this unpredictable election year, Pennsylvania is living up to its name. 
-TokenName           NoInQ     NoInS     
-is                  1         1         
-State               1         1         
-Keyston             1         1         
-the                 1         1         
-cosine=0.1291	rank=3	qid=20	rel=0	The Keytstone Resort is owned and operated by Vail Resort. 
-TokenName           NoInQ     NoInS     
-is                  1         1         
-MRR=0.5458
+cosine=0.2143	rank=1	qid=20	rel=0	Keystone Resort is the largest ski resort in Summit County located in Keystone Colorado. 
+cosine=0.2105	rank=2	qid=20	rel=1	They call it the Keystone State, and in this unpredictable election year, Pennsylvania is living up to its name. 
+cosine=0.0769	rank=3	qid=20	rel=0	The Keytstone Resort is owned and operated by Vail Resort. 
+MRR=0.4667
