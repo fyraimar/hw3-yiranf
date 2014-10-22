@@ -75,7 +75,7 @@ public class DocumentVectorAnnotator extends JCasAnnotator_ImplBase {
   private void luceneCreateTermFreqVector(JCas jcas, Document doc) {
     StringReader reader = new StringReader(doc.getText());
     TokenStream tokenStream = new StandardTokenizer(Version.LUCENE_36, reader);
-    tokenStream = new StopFilter(Version.LUCENE_36, tokenStream, StopAnalyzer.ENGLISH_STOP_WORDS_SET);
+    //tokenStream = new StopFilter(Version.LUCENE_36, tokenStream, StopAnalyzer.ENGLISH_STOP_WORDS_SET);
     tokenStream = new PorterStemFilter(tokenStream);
 
     Map<String, Token> tokens = new HashMap<String, Token>();

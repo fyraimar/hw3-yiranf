@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import org.apache.uima.cas.CAS;
@@ -33,10 +34,12 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
   public int count;
 
   public double mMRR;
-  
+
   public int mDocCount;
-  
+
   public int mTokenCount;
+
+  public Map<String, Integer> globalTokenMap;
 
   public class TokenLog implements Comparable<TokenLog> {
     String token = "";
@@ -121,6 +124,7 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
     mMRR = 0.0;
     mDocCount = 0;
     mTokenCount = 0;
+    globalTokenMap = new HashMap<String, Integer>();
   }
 
   /**
@@ -145,6 +149,12 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
       FSList fsTokenList = doc.getTokenList();
 
       ArrayList<Token> tokenList = Utils.fromFSListToCollection(fsTokenList, Token.class);
+
+      if (doc.getRelevanceValue() != 99) {
+        mDocCount++;
+        mTokenCount += tokenList.size();
+      }
+
       Map<String, Integer> tokenMap = new HashMap<String, Integer>();
       for (Token tk : tokenList) {
         tokenMap.put(tk.getText(), tk.getFrequency());
@@ -174,6 +184,28 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
       SentenceItem sent = (SentenceItem) it.next();
 
       if (sent.rel == 99) {
+        continue;
+      }
+      Map tokens = sent.tokenMap;
+
+      Iterator iter = tokens.entrySet().iterator();
+      while (iter.hasNext()) {
+        Map.Entry<String, Integer> token = (Entry<String, Integer>) iter.next();
+
+        if (globalTokenMap.get(token.getKey()) != null) {
+          int nfreq = token.getValue() + globalTokenMap.get(token.getKey());
+          globalTokenMap.put(token.getKey(), nfreq);
+        } else {
+          globalTokenMap.put(token.getKey(), token.getValue());
+        }
+      }
+    }
+
+    it = mSentenceList.iterator();
+    while (it.hasNext()) {
+      SentenceItem sent = (SentenceItem) it.next();
+
+      if (sent.rel == 99) {
         queryVector = sent.tokenMap;
         sent.setScore(1.0);
       } else {
@@ -181,7 +213,8 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
         // sent.setScore(computeCosineSimilarity(sent, queryVector, docVector));
         // sent.setScore(computeJaccard(queryVector, docVector));
         // sent.setScore(computeDice(queryVector, docVector));
-         sent.setScore(computeTversky(queryVector, docVector));
+        // sent.setScore(computeTversky(queryVector, docVector));
+        sent.setScore(computeBM25(queryVector, docVector));
       }
     }
 
@@ -361,7 +394,7 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
 
     Set<String> qv = queryVector.keySet();
     Set<String> dv = docVector.keySet();
-    
+
     double a = 0.2;
     double b = 1 - a;
 
@@ -390,10 +423,33 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
     ret = (double) M11 / (a * M10 + b * M01 + M11);
     return ret;
   }
-  
+
   private double computeBM25(Map<String, Integer> queryVector, Map<String, Integer> docVector) {
     double ret = 0.0;
+    
+    Iterator it = queryVector.entrySet().iterator();
+    while (it.hasNext()) {
+      Map.Entry<String, Integer> pair = (Entry<String, Integer>) it.next();
+      
+      if (docVector.get(pair.getKey()) == null) continue;
+      
+      ret += getEntryBM25(docVector.size(), pair.getKey(), docVector.get(pair.getKey()));
+    }
+    
     return ret;
+  }
+
+  private double getEntryBM25(int docLength, String key, int termFreq) {
+    double k_1 = 1.2;
+    double b = 0.75;
+    
+    double idf = Math.log((mDocCount - globalTokenMap.get(key) +0.5f) / (globalTokenMap.get(key) +0.5f));
+    
+    double K = ((k_1 + 1.0) * termFreq)/(termFreq + k_1 * (1 - b + b * (mTokenCount/mDocCount)));
+    
+    System.out.println("bm25: " + K*idf);
+    
+    return K * idf;
   }
 
   private void printReport() {
