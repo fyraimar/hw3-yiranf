@@ -33,6 +33,10 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
   public int count;
 
   public double mMRR;
+  
+  public int mDocCount;
+  
+  public int mTokenCount;
 
   public class TokenLog implements Comparable<TokenLog> {
     String token = "";
@@ -115,7 +119,8 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
     mSentenceList = new ArrayList<SentenceItem>();
     mReportList = new ArrayList<String>();
     mMRR = 0.0;
-    count = 0;
+    mDocCount = 0;
+    mTokenCount = 0;
   }
 
   /**
@@ -176,7 +181,7 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
         // sent.setScore(computeCosineSimilarity(sent, queryVector, docVector));
         // sent.setScore(computeJaccard(queryVector, docVector));
         // sent.setScore(computeDice(queryVector, docVector));
-        sent.setScore(computeTversky(queryVector, docVector));
+         sent.setScore(computeTversky(queryVector, docVector));
       }
     }
 
@@ -357,7 +362,7 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
     Set<String> qv = queryVector.keySet();
     Set<String> dv = docVector.keySet();
     
-    double a = 0.9;
+    double a = 0.2;
     double b = 1 - a;
 
     int M11 = 0;
@@ -383,6 +388,11 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
     }
 
     ret = (double) M11 / (a * M10 + b * M01 + M11);
+    return ret;
+  }
+  
+  private double computeBM25(Map<String, Integer> queryVector, Map<String, Integer> docVector) {
+    double ret = 0.0;
     return ret;
   }
 

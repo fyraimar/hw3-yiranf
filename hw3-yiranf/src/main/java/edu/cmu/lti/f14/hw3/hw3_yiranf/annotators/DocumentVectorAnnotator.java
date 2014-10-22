@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.lucene.analysis.TokenStream;
+import org.apache.lucene.analysis.core.StopAnalyzer;
 import org.apache.lucene.analysis.core.StopFilter;
 import org.apache.lucene.analysis.en.PorterStemFilter;
 import org.apache.lucene.analysis.standard.StandardTokenizer;
@@ -74,7 +75,7 @@ public class DocumentVectorAnnotator extends JCasAnnotator_ImplBase {
   private void luceneCreateTermFreqVector(JCas jcas, Document doc) {
     StringReader reader = new StringReader(doc.getText());
     TokenStream tokenStream = new StandardTokenizer(Version.LUCENE_36, reader);
-    // tokenStream = new StopFilter(Version.LUCENE_36, tokenStream, stop_word_set);
+    tokenStream = new StopFilter(Version.LUCENE_36, tokenStream, StopAnalyzer.ENGLISH_STOP_WORDS_SET);
     tokenStream = new PorterStemFilter(tokenStream);
 
     Map<String, Token> tokens = new HashMap<String, Token>();
@@ -103,5 +104,4 @@ public class DocumentVectorAnnotator extends JCasAnnotator_ImplBase {
     Collection<Token> values = tokens.values();
     doc.setTokenList(Utils.fromCollectionToFSList(jcas, values));
   }
-
 }
