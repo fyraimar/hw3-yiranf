@@ -2,22 +2,23 @@ package edu.cmu.lti.f14.hw3.hw3_yiranf.annotators;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map;
-import java.util.Vector;
 
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.cas.FSIterator;
 import org.apache.uima.jcas.JCas;
-import org.apache.uima.jcas.cas.IntegerArray;
-import org.apache.uima.jcas.cas.StringArray;
 import org.apache.uima.jcas.tcas.Annotation;
 
 import edu.cmu.lti.f14.hw3.hw3_yiranf.typesystems.Document;
 import edu.cmu.lti.f14.hw3.hw3_yiranf.typesystems.Token;
 import edu.cmu.lti.f14.hw3.hw3_yiranf.utils.Utils;
 
+/**
+ * A simple implement of a tokenizer which only divide the sentences by white spaces.
+ * @author yiranfei
+ *
+ */
 public class DocumentVectorAnnotator extends JCasAnnotator_ImplBase {
 
   @Override
@@ -38,11 +39,9 @@ public class DocumentVectorAnnotator extends JCasAnnotator_ImplBase {
    */
 
   private void createTermFreqVector(JCas jcas, Document doc) {
-
     String docText = doc.getText();
 
     Map<String, Token> tokens = new HashMap<String, Token>();
-
     String[] candidates = docText.split("\\s+");
     for (String candidate : candidates) {
       Token target = tokens.get(candidate);

@@ -22,6 +22,13 @@ import edu.cmu.lti.f14.hw3.hw3_yiranf.typesystems.Document;
 import edu.cmu.lti.f14.hw3.hw3_yiranf.typesystems.Token;
 import edu.cmu.lti.f14.hw3.hw3_yiranf.utils.Utils;
 
+/**
+ * Implement a cosine similarity calculator with a MRR evaluation. Define a sortable nestclass to
+ * help to get the rank of each document.
+ * 
+ * @author yiranfei
+ *
+ */
 public class RetrievalEvaluator extends CasConsumer_ImplBase {
 
   public ArrayList<SentenceItem> mSentenceList;
@@ -34,10 +41,15 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
 
   public class SentenceItem implements Comparable<SentenceItem> {
     int qId = -1;
+
     int rel = -1;
+
     int rank = -1;
+
     String text = "";
+
     double mCosineSimilarity = 0.0;
+
     Map<String, Integer> tokenMap = null;
 
     public SentenceItem(int nqId, int nrel, String ntext, Map<String, Integer> ntokenMap) {
@@ -96,7 +108,6 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
 
     if (it.hasNext()) {
       Document doc = (Document) it.next();
-      // System.out.println(doc.getText());
 
       // Make sure that your previous annotators have populated this in CAS
       FSList fsTokenList = doc.getTokenList();
@@ -113,22 +124,12 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
     }
   }
 
-  /**
-   * TODO 1. Compute Cosine Similarity and rank the retrieved sentences 2. Compute the MRR metric
-   */
   @Override
   public void collectionProcessComplete(ProcessTrace arg0) throws ResourceProcessException,
           IOException {
 
     super.collectionProcessComplete(arg0);
 
-    /*
-     * Iterator<Map<String, Integer>> iter = tokenMapList.iterator(); while (iter.hasNext()) {
-     * Map<String, Integer> ls = iter.next(); // System.out.println(ls.size()); if (ls.get("the") !=
-     * null) { int feq = ls.get("the"); System.out.println("the  " + feq); } }
-     */
-
-    // TODO :: compute the cosine similarity measure
     Map<String, Integer> queryVector = null;
     Map<String, Integer> docVector = null;
 
@@ -149,14 +150,6 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
     Collections.sort(mSentenceList);
     setSentenceListRank();
 
-    Iterator iter = mSentenceList.iterator();
-    while (iter.hasNext()) {
-      SentenceItem sent = (SentenceItem) iter.next();
-
-      System.out
-              .println(sent.qId + " " + sent.rel + " " + sent.rank + " " + sent.mCosineSimilarity);
-    }
-
     // Compute the metric:: mean reciprocal rank
     mMRR = compute_mrr();
 
@@ -174,7 +167,6 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
     double lenQuery = 0.0;
     double lenDoc = 0.0;
 
-    // TODO :: compute cosine similarity between two sentences
     Iterator it = queryVector.entrySet().iterator();
     while (it.hasNext()) {
       Map.Entry<String, Integer> pairs = (Map.Entry<String, Integer>) it.next();
@@ -193,8 +185,6 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
     }
 
     cosine_similarity = sum / (Math.sqrt(lenDoc) * Math.sqrt(lenQuery));
-
-    System.out.println(cosine_similarity);
 
     return cosine_similarity;
   }
